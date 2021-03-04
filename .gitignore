@@ -211,3 +211,6 @@ gradle-app.setting
 
 ### Gradle Patch ###
 **/build/
+
+### For Test ###
+src/main/java/dev/solar/daymoji/TestController.java
