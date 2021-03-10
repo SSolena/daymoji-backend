@@ -26,7 +26,8 @@ public class Diary {
     @JoinColumn(name = "EMOJI_ID")
     private Emoji representativeEmoji;
 
-    @OneToMany(mappedBy = "diary")
+    @OneToMany
+    @JoinColumn(name = "DIARY_ID")
     private List<TodayEmoji> todayEmojis = new ArrayList<>();
 
     private double latitude;
