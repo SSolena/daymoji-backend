@@ -1,4 +1,4 @@
-package dev.solar.daymoji.model.diary;
+package dev.solar.daymoji.domain.diary;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

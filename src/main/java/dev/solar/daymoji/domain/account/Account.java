@@ -1,4 +1,4 @@
-package dev.solar.daymoji.model.account;
+package dev.solar.daymoji.domain.account;
 
 import lombok.*;
 
