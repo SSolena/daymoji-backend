@@ -1,11 +1,14 @@
-package dev.solar.daymoji.controller.diary;
+package dev.solar.daymoji.web.diary;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.solar.daymoji.domain.diary.DiaryRepository;
+import dev.solar.daymoji.service.DiaryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@SpringBootTest
+@AutoConfigureMockMvc
 public class DiaryControllerTest {
 
     @Autowired
@@ -28,6 +32,12 @@ public class DiaryControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private DiaryService diaryService;
+
+    @Autowired
+    private DiaryRepository diaryRepository;
 
     @Autowired
     private WebApplicationContext ctx;
@@ -42,7 +52,7 @@ public class DiaryControllerTest {
 
     @Test
     public void createDiary() throws Exception {
-        DiaryDto diaryDto = DiaryDto.builder()
+        PostingRequest request = PostingRequest.builder()
                 .title("Today's Diary")
                 .contents("Sunny Day")
                 .representativeEmoji(1L)
@@ -56,7 +66,7 @@ public class DiaryControllerTest {
         mockMvc.perform(post("/api/diaries")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
-                .content(objectMapper.writeValueAsString(diaryDto)))
+                .content(objectMapper.writeValueAsString(request)))
             .andDo(print())
             .andExpect(jsonPath("id").exists())
             .andExpect(header().exists(HttpHeaders.LOCATION))

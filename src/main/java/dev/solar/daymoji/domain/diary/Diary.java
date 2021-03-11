@@ -42,6 +42,16 @@ public class Diary {
 
     private LocalDateTime modifiedDate;
 
+    public Diary(Long id, String title, String contents, double latitude, double longitude, String nameOfLocation, boolean isOpened) {
+        this.id = id;
+        this.title = title;
+        this.contents = contents;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.nameOfLocation = nameOfLocation;
+        this.isOpened = isOpened;
+    }
+
     public void modifyTitle(String title) {
         this.title = title;
     }
