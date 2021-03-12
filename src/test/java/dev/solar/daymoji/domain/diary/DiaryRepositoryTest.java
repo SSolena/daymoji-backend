@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,5 +54,36 @@ public class DiaryRepositoryTest {
         assertThat(latitue).isEqualTo(diary.getLatitude());
         assertThat(longitude).isEqualTo(diary.getLongitude());
         assertThat(nameOfLocation).isEqualTo(diary.getNameOfLocation());
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.of(2021,3,12,6,30,0);
+        String title = "Cafe Tour";
+        String contents = "so goooooooood.";
+        double latitue = 12.5;
+        double longitude = 16.3;
+        String nameOfLocation = "My House";
+
+        diaryRepository.save(Diary.builder()
+                .title(title)
+                .contents(contents)
+                .opened(true)
+                .latitude(latitue)
+                .longitude(longitude)
+                .nameOfLocation(nameOfLocation)
+                .build());
+
+        //when
+        List<Diary> diaries = diaryRepository.findAll();
+
+        //then
+        Diary diary = diaries.get(0);
+
+        System.out.println(">>>>>>>>> createdDate : " + diary.getCreatedDateTime() +", modifiedDate : " + diary.getModifiedDateTime());
+
+        assertThat(diary.getCreatedDateTime()).isAfter(now);
+        assertThat(diary.getModifiedDateTime()).isAfter(now);
     }
 }

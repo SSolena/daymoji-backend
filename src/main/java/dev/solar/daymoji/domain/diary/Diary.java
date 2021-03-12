@@ -1,5 +1,6 @@
 package dev.solar.daymoji.domain.diary;
 
+import dev.solar.daymoji.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Diary {
+public class Diary extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,10 +41,6 @@ public class Diary {
     private String nameOfLocation;
 
     private boolean opened;
-
-    private LocalDateTime createdDate;
-
-    private LocalDateTime modifiedDate;
 
     public Diary(String title, String contents, double latitude, double longitude, String nameOfLocation, boolean opened) {
         this.title = title;

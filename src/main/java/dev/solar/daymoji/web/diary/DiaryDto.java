@@ -28,8 +28,8 @@ public class DiaryDto {
     private double longitude;
     private String nameOfLocation;
     private boolean isOpened;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private LocalDateTime createdDateTime;
+    private LocalDateTime modifiedDateTime;
 
     public DiaryDto(Diary source) {
         copyProperties(source, this);
