@@ -1,9 +1,13 @@
 package dev.solar.daymoji.web.diary;
 
-import dev.solar.daymoji.domain.diary.TodayEmoji;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import dev.solar.daymoji.service.DiaryService;
 import dev.solar.daymoji.service.EmojiService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.MediaTypes;
@@ -14,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -30,13 +34,21 @@ public class DiaryController {
 
     private final EmojiService emojiService;
 
+    private final ModelMapper modelMapper;
+
     @PostMapping
-    public ResponseEntity postDiary(@RequestBody PostingRequest request) {
-        log.debug("request : {}", request);
-        List<Long> todays = new ArrayList<>();
-        todays.add(1L);
-        todays.add(2L);
-        request.setTodayEmojiIds(todays);
+    public ResponseEntity postDiary(@RequestBody Map<String, Object> requestBody) {
+        log.debug("request : {}", requestBody);
+
+        Gson gson = new Gson();
+        JsonParser jsonParser = new JsonParser();
+        JsonElement elementTodayEmojis = jsonParser.parse(requestBody.get("todayEmojis").toString());
+        List<Long> todayEmojiIds = gson.fromJson(elementTodayEmojis, (new TypeToken<List<Long>>() {
+        }).getType());
+
+        PostingRequest request = modelMapper.map(requestBody, PostingRequest.class);
+        request.setTodayEmojiIds(todayEmojiIds);
+
         URI createdUri = linkTo(methodOn(DiaryController.class).postDiary(null)).slash("{id}").toUri();
         return ResponseEntity.created(createdUri).body(new DiaryDto(diaryService.save(request.newDiary(), request.getRepresentativeEmoji(), request.getTodayEmojiIds())));
     }
