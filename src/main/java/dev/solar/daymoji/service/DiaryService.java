@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @RequiredArgsConstructor
 @Service
@@ -19,5 +22,11 @@ public class DiaryService {
         diary.postRepresentativeEmoji(emojiService.findById(emojiId));
         diary.postTodayEmojis(emojiService.findAll(todayEmojiIds));
         return diaryRepository.save(diary);
+    }
+
+    public Optional<Diary> findById(Long diaryId) {
+        checkNotNull(diaryId, "diaryId must be provided");
+
+        return diaryRepository.findById(diaryId);
     }
 }
