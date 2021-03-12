@@ -24,6 +24,7 @@ dependencies {
     implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'mysql:mysql-connector-java'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
     testImplementation 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

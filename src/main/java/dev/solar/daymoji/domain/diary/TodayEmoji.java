@@ -18,4 +18,8 @@ public class TodayEmoji {
     @ManyToOne
     @JoinColumn(name = "EMOJI_ID")
     private Emoji emoji;
+
+    public TodayEmoji(Emoji emoji) {
+        this.emoji = emoji;
+    }
 }

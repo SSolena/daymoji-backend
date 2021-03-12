@@ -1,6 +1,9 @@
 package dev.solar.daymoji.domain.diary;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,7 +29,7 @@ public class Diary {
     @JoinColumn(name = "EMOJI_ID")
     private Emoji representativeEmoji;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "DIARY_ID")
     private List<TodayEmoji> todayEmojis = new ArrayList<>();
 
@@ -50,6 +53,14 @@ public class Diary {
         this.longitude = longitude;
         this.nameOfLocation = nameOfLocation;
         this.isOpened = isOpened;
+    }
+
+    public void postRepresentativeEmoji(Emoji emoji) {
+        this.representativeEmoji = emoji;
+    }
+
+    public void postTodayEmojis(List<TodayEmoji> todayEmojis) {
+        this.todayEmojis = todayEmojis;
     }
 
     public void modifyTitle(String title) {
