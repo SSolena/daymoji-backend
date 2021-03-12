@@ -1,5 +1,6 @@
 package dev.solar.daymoji.domain.diary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Emoji {
 
     private String codeOfEnglish;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "emoji")
     private List<TodayEmoji> todayEmojis = new ArrayList<>();
 }

@@ -42,8 +42,8 @@ public class DiaryController {
 
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
-        JsonElement elementTodayEmojis = jsonParser.parse(requestBody.get("todayEmojis").toString());
-        List<Long> todayEmojiIds = gson.fromJson(elementTodayEmojis, (new TypeToken<List<Long>>() {
+        JsonElement elementTodayEmojiIds = jsonParser.parse(requestBody.get("todayEmojiIds").toString());
+        List<Long> todayEmojiIds = gson.fromJson(elementTodayEmojiIds, (new TypeToken<List<Long>>() {
         }).getType());
 
         PostingRequest request = modelMapper.map(requestBody, PostingRequest.class);

@@ -45,8 +45,7 @@ public class Diary {
 
     private LocalDateTime modifiedDate;
 
-    public Diary(Long id, String title, String contents, double latitude, double longitude, String nameOfLocation, boolean opened) {
-        this.id = id;
+    public Diary(String title, String contents, double latitude, double longitude, String nameOfLocation, boolean opened) {
         this.title = title;
         this.contents = contents;
         this.latitude = latitude;

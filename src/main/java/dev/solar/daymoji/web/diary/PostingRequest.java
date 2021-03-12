@@ -14,7 +14,6 @@ import java.util.List;
 @ToString
 public class PostingRequest {
 
-    private Long id;
     private String title;
     private String contents;
     private Long representativeEmoji;
@@ -25,7 +24,7 @@ public class PostingRequest {
     private boolean opened;
 
     public Diary newDiary() {
-        Diary diary = new Diary(id, title, contents, latitude, longitude, nameOfLocation, opened);
+        Diary diary = new Diary(title, contents, latitude, longitude, nameOfLocation, opened);
         return diary;
     }
 }
