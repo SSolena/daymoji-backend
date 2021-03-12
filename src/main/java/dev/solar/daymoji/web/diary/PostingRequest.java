@@ -22,10 +22,10 @@ public class PostingRequest {
     private double latitude;
     private double longitude;
     private String nameOfLocation;
-    private boolean isOpened;
+    private boolean opened;
 
     public Diary newDiary() {
-        Diary diary = new Diary(id, title, contents, latitude, longitude, nameOfLocation, isOpened);
+        Diary diary = new Diary(id, title, contents, latitude, longitude, nameOfLocation, opened);
         return diary;
     }
 }

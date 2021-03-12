@@ -35,7 +35,7 @@ public class DiaryRepositoryTest {
         diaryRepository.save(Diary.builder()
                 .title(title)
                 .contents(contents)
-                .isOpened(true)
+                .opened(true)
                 .latitude(latitue)
                 .longitude(longitude)
                 .nameOfLocation(nameOfLocation)

@@ -59,7 +59,7 @@ public class DiaryControllerTest {
                 .nameOfLocation("친구집")
                 .longitude(14.123)
                 .latitude(23.123)
-                .isOpened(true)
+                .opened(true)
                 .build();
 
         //@formatter:off

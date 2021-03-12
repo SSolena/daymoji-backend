@@ -39,20 +39,20 @@ public class Diary {
 
     private String nameOfLocation;
 
-    private boolean isOpened;
+    private boolean opened;
 
     private LocalDateTime createdDate;
 
     private LocalDateTime modifiedDate;
 
-    public Diary(Long id, String title, String contents, double latitude, double longitude, String nameOfLocation, boolean isOpened) {
+    public Diary(Long id, String title, String contents, double latitude, double longitude, String nameOfLocation, boolean opened) {
         this.id = id;
         this.title = title;
         this.contents = contents;
         this.latitude = latitude;
         this.longitude = longitude;
         this.nameOfLocation = nameOfLocation;
-        this.isOpened = isOpened;
+        this.opened = opened;
     }
 
     public void postRepresentativeEmoji(Emoji emoji) {
