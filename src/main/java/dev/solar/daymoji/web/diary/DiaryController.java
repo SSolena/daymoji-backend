@@ -3,6 +3,7 @@ package dev.solar.daymoji.web.diary;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import dev.solar.daymoji.error.NotFoundException;
 import dev.solar.daymoji.service.DiaryService;
 import dev.solar.daymoji.service.EmojiService;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
@@ -51,5 +49,12 @@ public class DiaryController {
 
         URI createdUri = linkTo(methodOn(DiaryController.class).postDiary(null)).slash("{id}").toUri();
         return ResponseEntity.created(createdUri).body(new DiaryDto(diaryService.save(request.newDiary(), request.getRepresentativeEmoji(), request.getTodayEmojiIds())));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getDiary(@PathVariable Long id) {
+        return ResponseEntity.ok(diaryService.findById(id)
+                .map(DiaryDto::new)
+                .orElseThrow(() -> new NotFoundException("Not Founded Diary.")));
     }
 }
