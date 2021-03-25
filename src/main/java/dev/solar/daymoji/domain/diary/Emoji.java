@@ -22,6 +22,7 @@ public class Emoji {
 
     private String codeOfEnglish;
 
+    @Builder.Default
     @JsonIgnore
     @OneToMany(mappedBy = "emoji")
     private List<TodayEmoji> todayEmojis = new ArrayList<>();

@@ -23,6 +23,7 @@ public class DiaryDto {
     private String title;
     private String contents;
     private Emoji representativeEmoji;
+    @Builder.Default
     private List<TodayEmoji> todayEmojis = new ArrayList<>();
     private double latitude;
     private double longitude;
@@ -32,6 +33,7 @@ public class DiaryDto {
     private LocalDateTime modifiedDateTime;
 
     public DiaryDto(Diary source) {
+        System.out.println("Diary : " + source.getId() + ", title : " + source.getTitle() + ", contents : " + source.getTitle());
         copyProperties(source, this);
     }
 }
