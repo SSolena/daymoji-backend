@@ -35,7 +35,7 @@ public class DiaryRepositoryTest {
         double longitude = 16.3;
         String nameOfLocation = "My House";
 
-        diaryRepository.save(Diary.builder()
+        Diary savedDiary = diaryRepository.save(Diary.builder()
                 .title(title)
                 .contents(contents)
                 .opened(true)
@@ -49,13 +49,12 @@ public class DiaryRepositoryTest {
 
         //then
         assertThat(diaryRepository.count()).isNotEqualTo(0);
-        Diary diary = diaries.get(0);
-        assertThat(title).isEqualTo(diary.getTitle());
-        assertThat(contents).isEqualTo(diary.getContents());
-        assertThat(true).isEqualTo(diary.isOpened());
-        assertThat(latitue).isEqualTo(diary.getLatitude());
-        assertThat(longitude).isEqualTo(diary.getLongitude());
-        assertThat(nameOfLocation).isEqualTo(diary.getNameOfLocation());
+        assertThat(title).isEqualTo(savedDiary.getTitle());
+        assertThat(contents).isEqualTo(savedDiary.getContents());
+        assertThat(true).isEqualTo(savedDiary.isOpened());
+        assertThat(latitue).isEqualTo(savedDiary.getLatitude());
+        assertThat(longitude).isEqualTo(savedDiary.getLongitude());
+        assertThat(nameOfLocation).isEqualTo(savedDiary.getNameOfLocation());
     }
 
     @Test
