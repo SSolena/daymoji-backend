@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ public class Diary extends BaseTimeEntity {
     @JoinColumn(name = "EMOJI_ID")
     private Emoji representativeEmoji;
 
+    @Builder.Default
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "DIARY_ID")
     private List<TodayEmoji> todayEmojis = new ArrayList<>();

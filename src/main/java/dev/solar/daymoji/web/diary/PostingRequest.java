@@ -17,6 +17,7 @@ public class PostingRequest {
     private String title;
     private String contents;
     private Long representativeEmoji;
+    @Builder.Default
     private List<Long> todayEmojiIds = new ArrayList<>();
     private double latitude;
     private double longitude;
