@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=daymoji-webservice
+PROJECT_NAME=daymoji-springboot-webservice
 
 echo "> Build 파일 복사"
 
@@ -9,7 +9,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 
-CURRENT_PID=$(pgrep -fl daymoji-webservice | grep jar | awk '{print $1}') # (1)
+CURRENT_PID=$(pgrep -fl daymoji-springboot-webservice | grep jar | awk '{print $1}') # (1)
 
 echo "현재 구동 중인 애플리케이션pid: $CURRENT_PID"
 
