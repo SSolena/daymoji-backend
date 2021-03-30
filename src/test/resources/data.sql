@@ -1,0 +1,10 @@
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (1, 'happiness', '행복');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (2, 'proud', '뿌듯');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (3, 'joy', '즐거움');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (4, 'ease', '편안');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (5, 'heart', '설렘');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (6, 'concern', '걱정');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (7, 'sadness', '슬픔');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (8, 'tiredness', '피곤');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (9, 'flustration', '당황');
+INSERT INTO emoji(id, code_of_english, code_of_korean) VALUES (10, 'anger', '분노');
