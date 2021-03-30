@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=daymoji-springboot-webservice
+REPOSITORY=/home/ec2-user/app/daymoji-springboot-webservice
+PROJECT_NAME=daymoji
 
 echo "> Build 파일 복사"
 
